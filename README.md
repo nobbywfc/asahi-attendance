@@ -1,4 +1,4 @@
-# Asahi Running Club - Attendance Management Plugin
+# Attendance Management Plugin
 
 A WordPress plugin for managing event attendance, RSVPs, and response lists.
 
