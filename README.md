@@ -1,83 +1,72 @@
-# 出欠管理プラグイン
+# Asahi Running Club - Attendance Management Plugin
 
-WordPressで「出欠党幹事長」相当の出欠確認・回答管理機能を提供するプラグインです。
+A WordPress plugin for managing event attendance, RSVPs, and response lists.
 
----
-
-## インストール方法
-
-1. `asahi-attendance` フォルダをまるごと  
-   `/wp-content/plugins/` 以下に配置します。
-2. WordPress 管理画面 > プラグイン から **「出欠管理プラグイン（旭走友会）」** を有効化します。
-3. DBテーブルが自動作成されます。
+[日本語版はこちら](README.ja.md)
 
 ---
 
-## 使い方
+## Features
 
-### 1. イベントを作成する
+- ✅ Create / edit / delete events (admin panel)
+- ✅ Customizable response choices per event
+- ✅ Ajax-based response registration and editing
+- ✅ Auto-close form after deadline
+- ✅ Response summary with counts per choice
+- ✅ Sortable response table (click column headers)
+- ✅ Mobile-friendly layout
+- ✅ Delete individual responses from admin panel
 
-管理画面 > **出欠管理 > 新規作成** から設定します。
+---
 
-| 項目 | 説明 |
-|------|------|
-| タイトル | 例「江ノ島マラニック 6/7」 |
-| 開催日時 | イベントの日時 |
-| 説明・案内文 | 参加者へのメッセージ |
-| 回答期限 | 期限を過ぎると回答フォームが非表示になります |
-| 選択肢 | 1行1選択肢で入力。例:<br>`江ノ島から参加`<br>`大池から参加`<br>`欠席`<br>`未定` |
+## Installation
 
-### 2. ショートコードをページに貼る
+1. Upload the `asahi-attendance` folder to `/wp-content/plugins/`.
+2. Activate the plugin from **WordPress Admin > Plugins**.
+3. Database tables are created automatically on activation.
 
-投稿・固定ページのエディタに以下を貼り付けます:
+---
 
-```
+## Usage
+
+### 1. Create an Event
+
+Go to **Admin > Attendance > New Event** and fill in:
+
+| Field | Description |
+|-------|-------------|
+| Title | e.g. "Enoshima Maranik 6/7" |
+| Event Date | Date and time of the event |
+| Description | Message for participants |
+| Deadline | Form auto-closes after this date/time |
+| Choices | One choice per line, e.g. `Attend / Absent / Undecided` |
+
+### 2. Embed the Shortcode
+
+Paste the shortcode into any post or page:
+
+\`\`\`
 [aap_event id="1"]
-```
+\`\`\`
 
-※ `id` はイベント一覧に表示されている番号です。
+The `id` is shown in the event list.
 
-### 3. 参加者が回答する
+### 3. Participants Respond
 
-- 名前・選択肢・コメントを入力して送信。
-- 送信後に「✏️ 回答を編集する」リンクが表示されます。
-- URLを控えておくと後から編集可能です（`?aap_edit=<トークン>`）。
-
----
-
-## 機能一覧
-
-- ✅ イベント作成・編集・削除（管理画面）
-- ✅ 選択肢をイベントごとにカスタマイズ
-- ✅ 回答の登録・編集（Ajax送信、ページ遷移なし）
-- ✅ 回答期限による自動クローズ
-- ✅ 回答集計の表示
-- ✅ テーブルのヘッダークリックによるソート
-- ✅ スマートフォン対応レイアウト
-- ✅ 管理画面から回答の削除が可能
+- Enter name, select a choice, and optionally add a comment.
+- After submitting, an edit link is provided.
+- Responses can be edited anytime via `?aap_edit=<token>` URL.
 
 ---
 
-## ファイル構成
+## Requirements
 
-```
-asahi-attendance/
-├── asahi-attendance.php      メインプラグインファイル
-├── includes/
-│   └── helpers.php           DBアクセス・ユーティリティ関数
-├── admin/
-│   ├── admin-page.php        管理画面（イベント管理・回答管理）
-│   └── admin.css             管理画面スタイル
-└── public/
-    ├── shortcode.php         ショートコード + Ajax ハンドラ
-    ├── css/front.css         フロントエンドスタイル
-    └── js/front.js           フロントエンドJS（送信・ソート）
-```
+- WordPress 5.8+
+- PHP 7.4+
+- MySQL 5.7+ / MariaDB 10.3+
 
 ---
 
-## 動作要件
+## License
 
-- WordPress 5.8 以上
-- PHP 7.4 以上
-- MySQL 5.7 以上 / MariaDB 10.3 以上
+GPL v2 or later
